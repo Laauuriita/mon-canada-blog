@@ -6,9 +6,18 @@ import Layout from '../layouts/Layout.astro';
   description="Laura et Bastien — une nageuse sauveteur et un bûcheron, deux Français installés au Québec. Ce blog c'est notre journal de bord canadien, avec beaucoup d'humour et d'écureuils."
 >
 
-  <div class="page-header">
-    <h1>À propos</h1>
-    <p>L'histoire d'une nageuse et d'un bûcheron qui ont traversé l'Atlantique ensemble.</p>
+  <!-- HERO FORÊT -->
+  <div class="about-hero">
+    <img
+      src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1600&q=80&auto=format&fit=crop"
+      alt="Forêt canadienne en automne"
+      class="about-hero-bg"
+    />
+    <div class="about-hero-content">
+      <span class="tag">Futuriste & authentique</span>
+      <h1>Comme des Écureuils</h1>
+      <p>Documenter les confins du Canada avec une perspective avant-gardiste — deux Français qui explorent, rigolent et s'adaptent.</p>
+    </div>
   </div>
 
   <!-- LAURA -->
@@ -19,8 +28,8 @@ import Layout from '../layouts/Layout.astro';
           <div class="about-avatar-placeholder">🏊‍♀️</div>
         </div>
         <div class="about-content">
-          <h1>Laura</h1>
-          <p class="tagline">Nageuse de haut niveau, sauveteur en mer, spécialiste SEO & accro au Canada.</p>
+          <h2>Laura</h2>
+          <p class="tagline">Nageuse de haut niveau · Sauveteur en mer · Spécialiste SEO</p>
           <p>
             Tout a commencé en 2019, avec un billet aller-retour Montréal pour des vacances de deux semaines.
             Deux semaines qui ont tout changé. Le fleuve Saint-Laurent, les forêts d'épinettes, le français
@@ -44,10 +53,13 @@ import Layout from '../layouts/Layout.astro';
   <!-- BASTIEN -->
   <section class="section section-alt">
     <div class="container">
-      <div class="about-grid">
-        <div class="about-content">
-          <h1>Bastien</h1>
-          <p class="tagline">Bûcheron de formation, rugbyman, gourmand invétéré & homme des bois au Canada.</p>
+      <div class="about-grid" style="direction:rtl;">
+        <div>
+          <div class="about-avatar-placeholder" style="direction:ltr;">🪓</div>
+        </div>
+        <div class="about-content" style="direction:ltr;">
+          <h2>Bastien</h2>
+          <p class="tagline">Bûcheron · Rugbyman · Gourmand invétéré · Homme des bois</p>
           <p>
             Quand Laura m'a parlé du Canada pour la première fois, j'ai dit oui en moins de dix secondes.
             Un pays avec des forêts immenses, de la neige, du gibier et de la bonne bouffe ? C'était fait pour moi.
@@ -63,15 +75,37 @@ import Layout from '../layouts/Layout.astro';
             de recherches, et je continue.
           </p>
         </div>
-        <div>
-          <div class="about-avatar-placeholder">🪓</div>
-        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTRE HISTOIRE — TIMELINE -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Notre histoire</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="timeline">
+        {[
+          { year: "2019", title: "La genèse", text: "Premier voyage au Québec — deux semaines qui ont tout changé. Laura découvre le Saint-Laurent et ne repart plus la même." },
+          { year: "2021", title: "Le grand saut", text: "Les valises sont faites. Montréal devient la base. Première vraie tempête de neige, premier sirop d'érable frais sur la neige." },
+          { year: "2022", title: "L'exploration", text: "Les Rocheuses, Charlevoix, la Gaspésie... Le Canada commence à révéler ses immensités. Laura chausse des raquettes pour la première fois." },
+          { year: "2023", title: "Le blog naît", text: "Trop de choses à raconter pour les garder pour nous. Comme des Écureuils voit le jour — avec beaucoup d'humour et peu de filtre." },
+          { year: "2026", title: "L'âge d'or", text: "Huit provinces visitées, des centaines d'écureuils croisés, et toujours autant d'émerveillement. L'aventure continue." },
+        ].map(item => (
+          <div class="timeline-item">
+            <div class="timeline-year">{item.year}</div>
+            <h4>{item.title}</h4>
+            <p>{item.text}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
   <!-- FAITS -->
-  <section class="section">
+  <section class="section section-alt">
     <div class="container">
       <div class="section-header">
         <h2>Nous en quelques chiffres</h2>
@@ -83,10 +117,10 @@ import Layout from '../layouts/Layout.astro';
           { icon: "🏙️", label: "Ville de résidence", value: "Montréal" },
           { icon: "🗺️", label: "Provinces visitées", value: "8 / 10" },
           { icon: "🐿️", label: "Écureuils croisés", value: "Incalculable" },
-          { icon: "🌡️", label: "Température la plus froide vécue", value: "−34°C" },
-          { icon: "🏈", label: "Matchs de rugby regardés ensemble", value: "Tous" },
-          { icon: "🎿", label: "Premières fois sur des skis (Laura)", value: "Hiver 2022" },
-          { icon: "🍺", label: "Bières locales testées (Bastien)", value: "Trop pour compter" },
+          { icon: "🌡️", label: "Température la plus froide", value: "−34°C" },
+          { icon: "🏉", label: "Matchs de rugby regardés", value: "Tous" },
+          { icon: "🎿", label: "Premières fois sur des skis", value: "Hiver 2022" },
+          { icon: "🍺", label: "Bières locales testées", value: "Trop pour compter" },
         ].map(fact => (
           <div class="fact-card">
             <div class="fact-icon">{fact.icon}</div>
@@ -98,21 +132,21 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <!-- POURQUOI CE BLOG -->
-  <section class="section section-alt">
+  <!-- POURQUOI -->
+  <section class="section">
     <div class="container" style="max-width: 760px;">
-      <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--color-forest-dark);">Pourquoi "Comme des Écureuils" ?</h2>
-      <p style="margin-bottom: 1.25rem; color: var(--color-text-light);">
+      <h2 style="font-size: 1.9rem; margin-bottom: 1.5rem;">Pourquoi "Comme des Écureuils" ?</h2>
+      <p style="margin-bottom: 1.25rem; color: var(--color-text-muted);">
         Parce que les écureuils, c'est notre truc. Depuis qu'on est arrivés au Québec, on en croise partout —
         dans les parcs, sur les balcons, dans les arbres à deux centimètres de notre tête. Ils sont curieux,
         ils explorent, ils collectent, ils s'adaptent à tout.
       </p>
-      <p style="margin-bottom: 1.25rem; color: var(--color-text-light);">
+      <p style="margin-bottom: 1.25rem; color: var(--color-text-muted);">
         C'est un peu ce qu'on fait aussi. On explore ce pays immense avec les yeux grands ouverts, on
         collectionne les souvenirs et les découvertes, et on s'adapte — aux hivers à −30°C, au joual québécois,
         aux distances qui font qu'un "petit détour" peut faire 200 km.
       </p>
-      <p style="color: var(--color-text-light);">
+      <p style="color: var(--color-text-muted);">
         Ce blog c'est notre façon de tout partager — avec honnêteté, avec humour, et avec l'enthousiasme
         de deux personnes qui réalisent vraiment leur projet de vie.
       </p>

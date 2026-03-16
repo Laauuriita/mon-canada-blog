@@ -9,17 +9,26 @@ const recentPosts = allPosts
 ---
 <Layout
   title="Accueil"
-  description="Blog de voyage sur le Canada — deux Français qui explorent le Québec, ses forêts géantes, ses hivers polaires et ses poutines depuis 2021."
+  description="Blog de voyage sur le Canada — une nageuse sauveteur et un bûcheron explorent le Québec, ses forêts géantes, ses hivers polaires et ses paysages sauvages."
 >
 
-  <!-- HERO -->
+  <!-- HERO avec vraie photo -->
   <section class="hero">
+    <img
+      src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80&auto=format&fit=crop"
+      alt="Lac Louise dans les Rocheuses canadiennes"
+      class="hero-bg"
+      loading="eager"
+    />
     <div class="hero-content">
       <span class="hero-eyebrow">🐿️ Comme des Écureuils — Blog Canada</span>
-      <h1>Le Canada,<br><span class="accent">comme des écureuils</span></h1>
+      <h1>
+        Le Canada,
+        <span class="accent">comme des écureuils</span>
+      </h1>
       <p>
-        Une nageuse sauveteur et un bûcheron débarquent au Québec avec leurs valises et beaucoup de curiosité.
-        On explore, on rigole, on se perd dans les forêts — et on vous raconte tout.
+        Une nageuse sauveteur et un bûcheron débarquent au Québec avec leurs valises
+        et beaucoup de curiosité. On explore, on rigole, on se perd dans les forêts — et on vous raconte tout.
       </p>
       <div class="hero-actions">
         <a href="/blog" class="btn btn-primary">Lire le blog</a>
@@ -28,20 +37,20 @@ const recentPosts = allPosts
     </div>
   </section>
 
-  <!-- INTRO THÈMES -->
-  <section class="section">
+  <!-- THÈMES -->
+  <section class="section section-alt">
     <div class="container">
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; text-align: center;">
+      <div class="theme-grid">
         {[
-          { icon: "🌲", title: "Nature sauvage", text: "Des forêts boréales aux Rocheuses, je t'emmène dans des paysages qui changent le regard." },
+          { icon: "🌲", title: "Nature sauvage", text: "Des forêts boréales aux Rocheuses, des paysages qui changent le regard." },
           { icon: "🍁", title: "Vie au Québec", text: "La belle province vue de l'intérieur — ses saisons, ses habitants, ses traditions." },
-          { icon: "🫕", title: "Gastronomie", text: "Poutine, sirop d'érable, homard des Îles... les saveurs du Canada ne ressemblent à rien d'autre." },
-          { icon: "🧭", title: "Conseils pratiques", text: "Visa, budget, météo, transports : tout ce qu'il faut savoir pour voyager au Canada sereinement." },
+          { icon: "🏔️", title: "Aventures", text: "Randonnées, raquettes, kayak... le Canada ça se vit debout." },
+          { icon: "🧭", title: "Conseils pratiques", text: "Visa, budget, météo, transports : tout pour voyager sereinement." },
         ].map(item => (
-          <div style="padding: 1.5rem; background: var(--color-sand); border-radius: 12px;">
-            <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">{item.icon}</div>
-            <h3 style="font-size: 1.05rem; margin-bottom: 0.5rem; color: var(--color-forest-dark);">{item.title}</h3>
-            <p style="font-size: 0.9rem; color: var(--color-text-light);">{item.text}</p>
+          <div class="theme-card">
+            <div class="icon">{item.icon}</div>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
           </div>
         ))}
       </div>
@@ -49,7 +58,7 @@ const recentPosts = allPosts
   </section>
 
   <!-- DERNIERS ARTICLES -->
-  <section class="section section-alt">
+  <section class="section">
     <div class="container">
       <div class="section-header">
         <h2>Derniers articles</h2>
@@ -59,7 +68,7 @@ const recentPosts = allPosts
       <div class="cards-grid">
         {recentPosts.map(post => (
           <article class="card">
-            <div class="card-image-placeholder" style={`background: ${post.data.bgColor || 'linear-gradient(135deg, #2d5a27, #4a7c3f)'}`}>
+            <div class="card-image-placeholder" style={`background: ${post.data.bgColor || 'linear-gradient(135deg, #0d2a1a, #0a1e2e)'}`}>
               {post.data.emoji || '🍁'}
             </div>
             <div class="card-body">
@@ -71,24 +80,43 @@ const recentPosts = allPosts
                 <span>·</span>
                 <span>{post.data.readTime} min de lecture</span>
               </div>
-              <a href={`/blog/${post.id}`} class="card-read-more" style="margin-top: 1rem; display: inline-flex;">Lire l'article</a>
+              <a href={`/blog/${post.id}`} class="card-read-more">Lire l'article</a>
             </div>
           </article>
         ))}
       </div>
       <div style="text-align: center; margin-top: 3rem;">
-        <a href="/blog" class="btn btn-primary">Voir tous les articles</a>
+        <a href="/blog" class="btn btn-outline">Voir tous les articles</a>
       </div>
     </div>
   </section>
 
+  <!-- PHOTO BANDE -->
+  <div style="display:grid; grid-template-columns: repeat(3,1fr); height: 240px; overflow:hidden;">
+    <img
+      src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&q=75&auto=format&fit=crop"
+      alt="Forêt boréale canadienne"
+      style="width:100%;height:100%;object-fit:cover;"
+    />
+    <img
+      src="https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=600&q=75&auto=format&fit=crop"
+      alt="Aurores boréales au Canada"
+      style="width:100%;height:100%;object-fit:cover;"
+    />
+    <img
+      src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=75&auto=format&fit=crop"
+      alt="Paysage montagneux canadien"
+      style="width:100%;height:100%;object-fit:cover;"
+    />
+  </div>
+
   <!-- CTA -->
-  <section class="section">
+  <section class="section section-dark">
     <div class="container">
-      <div style="background: linear-gradient(135deg, var(--color-forest-dark), var(--color-forest)); border-radius: 16px; padding: 3.5rem 2rem; text-align: center; color: var(--color-sand);">
-        <div style="font-size: 3rem; margin-bottom: 1rem;">🍁</div>
-        <h2 style="color: var(--color-sand); font-size: 1.8rem; margin-bottom: 0.75rem;">Une question ? Une envie de partager ?</h2>
-        <p style="color: rgba(242,232,217,0.8); max-width: 480px; margin: 0 auto 2rem;">
+      <div class="cta-section">
+        <div style="font-size: 2.5rem; margin-bottom: 1rem;">🐿️</div>
+        <h2>Une question ? Une envie de partager ?</h2>
+        <p>
           Tu prépares un voyage au Canada, tu veux des conseils ou simplement discuter ?
           Je lis tous mes messages avec plaisir.
         </p>
