@@ -1,0 +1,102 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout
+  title="À propos"
+  description="Je m'appelle Laura, Française installée au Québec depuis 2021. Ce blog, c'est mon journal de bord canadien — les découvertes, les chocs culturels et les coups de cœur."
+>
+
+  <div class="page-header">
+    <h1>À propos</h1>
+    <p>L'histoire d'une Française qui a traversé l'Atlantique et n'est jamais vraiment repartie.</p>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="about-grid">
+        <div>
+          <div class="about-avatar-placeholder">🧡</div>
+        </div>
+        <div class="about-content">
+          <h1>Bonjour, je suis Laura !</h1>
+          <p class="tagline">Française, Québécoise d'adoption, voyageuse compulsive.</p>
+          <p>
+            Tout a commencé en 2019, avec un billet aller-retour Montréal pour des vacances de deux semaines.
+            Deux semaines qui ont tout changé. Le fleuve Saint-Laurent, les forêts d'épinettes, le francophone
+            savoureux des Québécois, la poutine découverte à 1h du matin dans un snack de la rue Saint-Denis...
+            j'étais foutu·e.
+          </p>
+          <p>
+            En 2021, j'ai fait mes valises pour de bon. Permis de travail, appartement à Montréal, job dans
+            une boîte tech, et surtout : un énorme besoin de tout explorer. Le Canada est immense — 10 millions
+            de kilomètres carrés, dix provinces, trois territoires — et chaque coin de ce pays a quelque chose
+            à raconter.
+          </p>
+          <p>
+            Ce blog, c'est mon carnet de route. J'y raconte le Québec que j'habite, mais aussi les escapades
+            en Ontario, les road trips dans les Maritimes, les randonnées dans Charlevoix, les weekends à Québec
+            sous la neige. Je l'écris pour les voyageurs qui veulent aller au-delà des circuits touristiques,
+            et pour les expatriés en herbe qui rêvent de franchir le pas.
+          </p>
+          <p>
+            Je ne suis ni journaliste, ni influenceuse — juste quelqu'un qui aime écrire et qui a beaucoup
+            de choses à partager.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAITS EN CHIFFRES -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>En quelques chiffres</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="facts-grid" style="max-width: 900px; margin: 0 auto;">
+        {[
+          { icon: "🗓️", label: "Installée au Québec depuis", value: "2021" },
+          { icon: "🏙️", label: "Ville de résidence", value: "Montréal" },
+          { icon: "🗺️", label: "Provinces visitées", value: "8 / 10" },
+          { icon: "🏔️", label: "Parcs nationaux explorés", value: "14" },
+          { icon: "🌡️", label: "Température la plus froide vécue", value: "−34°C" },
+          { icon: "🍁", label: "Cabanes à sucre visitées", value: "Trop pour compter" },
+          { icon: "🎿", label: "Premières fois sur des skis", value: "Hiver 2022" },
+          { icon: "✍️", label: "Passion première", value: "L'écriture" },
+        ].map(fact => (
+          <div class="fact-card">
+            <div class="fact-icon">{fact.icon}</div>
+            <div class="fact-label">{fact.label}</div>
+            <div class="fact-value">{fact.value}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- POURQUOI CE BLOG -->
+  <section class="section">
+    <div class="container" style="max-width: 760px;">
+      <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--color-forest-dark);">Pourquoi ce blog ?</h2>
+      <p style="margin-bottom: 1.25rem; color: var(--color-text-light);">
+        Quand je suis arrivée au Québec, j'aurais adoré trouver un blog écrit par une Française qui avait
+        déjà vécu tout ça. Quelqu'un pour expliquer la différence entre un dépanneur et une épicerie, pour
+        prévenir que les hivers québécois sont d'une autre nature que les hivers parisiens, pour recommander
+        le meilleur rang à parcourir à l'automne quand les érables s'enflamment.
+      </p>
+      <p style="margin-bottom: 1.25rem; color: var(--color-text-light);">
+        Je n'ai pas trouvé exactement ça. Alors je l'ai créé.
+      </p>
+      <p style="color: var(--color-text-light);">
+        Mon objectif n'est pas d'être exhaustif ni de tout couvrir. C'est de partager ce que j'ai vraiment
+        vécu, ressenti, découvert — avec honnêteté et curiosité. Le Canada est un pays qui mérite qu'on
+        prenne le temps de le comprendre, pas juste de le photographier.
+      </p>
+      <div style="margin-top: 2.5rem; text-align: center;">
+        <a href="/contact" class="btn btn-primary">Me dire bonjour 👋</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

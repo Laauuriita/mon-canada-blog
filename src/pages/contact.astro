@@ -1,0 +1,143 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout
+  title="Contact"
+  description="Une question sur le Canada, un conseil pour ton voyage, une envie de partager ? Écris-moi, je réponds à tous les messages."
+>
+
+  <div class="page-header">
+    <h1>Me contacter</h1>
+    <p>Un message, une question, une idée ? Je lis tout et réponds avec plaisir.</p>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- INFOS -->
+        <div class="contact-info">
+          <h2>Parlons Canada 🍁</h2>
+          <p>
+            Tu prépares un voyage, tu veux des conseils d'expatriée, tu as une question sur la vie au Québec
+            ou tu veux juste dire bonjour — ce formulaire est fait pour ça.
+          </p>
+          <p>
+            Je réponds généralement sous 48h. Pour les collaborations ou partenariats,
+            précise-le dans ton message.
+          </p>
+
+          <div class="contact-item">
+            <span class="contact-item-icon">📍</span>
+            <div class="contact-item-text">
+              <strong>Où je suis</strong>
+              Montréal, Québec, Canada
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <span class="contact-item-icon">🌐</span>
+            <div class="contact-item-text">
+              <strong>Sur le web</strong>
+              Blog actif depuis 2024
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <span class="contact-item-icon">⏱️</span>
+            <div class="contact-item-text">
+              <strong>Temps de réponse</strong>
+              En général sous 48h
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <span class="contact-item-icon">💬</span>
+            <div class="contact-item-text">
+              <strong>Sujets de prédilection</strong>
+              Voyage, expatriation, Québec, nature canadienne, gastronomie
+            </div>
+          </div>
+        </div>
+
+        <!-- FORMULAIRE -->
+        <div class="form-card">
+          <h3 style="font-size: 1.2rem; margin-bottom: 1.5rem; color: var(--color-forest-dark);">Envoyer un message</h3>
+
+          <!--
+            FORMSPREE : remplace "YOUR_FORM_ID" par ton ID Formspree.
+            Crée un compte gratuit sur formspree.io, crée un formulaire,
+            et copie l'ID (format : xyzabc12) dans l'URL ci-dessous.
+          -->
+          <form
+            action="https://formspree.io/f/YOUR_FORM_ID"
+            method="POST"
+            id="contact-form"
+          >
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+              <div class="form-group">
+                <label for="prenom">Prénom *</label>
+                <input type="text" id="prenom" name="prenom" required placeholder="Marie" />
+              </div>
+              <div class="form-group">
+                <label for="nom">Nom</label>
+                <input type="text" id="nom" name="nom" placeholder="Dupont" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required placeholder="marie@exemple.fr" />
+            </div>
+
+            <div class="form-group">
+              <label for="sujet">Sujet *</label>
+              <select id="sujet" name="sujet" required>
+                <option value="">Choisir un sujet...</option>
+                <option value="conseil-voyage">Conseil pour un voyage au Canada</option>
+                <option value="expatriation">Question sur l'expatriation</option>
+                <option value="collaboration">Collaboration / partenariat</option>
+                <option value="autre">Autre</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message *</label>
+              <textarea id="message" name="message" required placeholder="Dis-moi tout..."></textarea>
+            </div>
+
+            <button type="submit" class="form-submit">
+              Envoyer le message 🍁
+            </button>
+          </form>
+
+          <p id="form-success" style="display:none; margin-top: 1rem; padding: 1rem; background: #e8f5e9; border-radius: 8px; color: #2e7d32; font-weight: 500; text-align: center;">
+            ✅ Message envoyé ! Je te réponds très vite.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const success = document.getElementById('form-success');
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { Accept: 'application/json' },
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        if (success) success.style.display = 'block';
+      }
+    });
+  }
+</script>

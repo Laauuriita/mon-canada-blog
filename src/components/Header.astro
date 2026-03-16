@@ -1,0 +1,32 @@
+---
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { href: "/", label: "Accueil" },
+  { href: "/blog", label: "Blog" },
+  { href: "/a-propos", label: "À propos" },
+  { href: "/contact", label: "Contact", cta: true },
+];
+---
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo" aria-label="Mon Canada — Accueil">
+      <span class="logo-title">🍁 Mon Canada</span>
+      <span class="logo-subtitle">Blog d'une Française au Québec</span>
+    </a>
+    <nav class="main-nav" aria-label="Navigation principale">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class:list={[
+            "nav-link",
+            { active: currentPath === link.href || (link.href !== "/" && currentPath.startsWith(link.href)) },
+            { cta: link.cta }
+          ]}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>

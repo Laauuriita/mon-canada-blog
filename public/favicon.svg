@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="20" fill="#1a2e1a"/>
+  <!-- Feuille d'érable simplifiée -->
+  <path d="M64 20 L72 40 L90 35 L78 52 L95 58 L80 65 L85 85 L64 75 L43 85 L48 65 L33 58 L50 52 L38 35 L56 40 Z" fill="#c0392b"/>
+  <rect x="58" y="85" width="12" height="22" rx="3" fill="#c0392b"/>
+</svg>

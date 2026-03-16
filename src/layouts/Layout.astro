@@ -1,0 +1,86 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  publishedTime?: string;
+}
+
+const {
+  title,
+  description = "Blog de voyage sur le Canada, écrit par une Française installée au Québec. Découvrez les paysages, la culture et les aventures canadiennes.",
+  image = "/og-image.jpg",
+  type = "website",
+  publishedTime,
+} = Astro.props;
+
+const siteUrl = "https://mon-canada-blog.vercel.app";
+const fullTitle = title === "Accueil" ? "Mon Canada — Blog voyage d'une Française au Québec" : `${title} | Mon Canada`;
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Primary -->
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${siteUrl}${image}`} />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Mon Canada" />
+    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${siteUrl}${image}`} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Preconnect fonts (none external for perf) -->
+    <meta name="theme-color" content="#1a2e1a" />
+
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": type === "article" ? "BlogPosting" : "WebSite",
+      "name": fullTitle,
+      "description": description,
+      "url": canonicalUrl,
+      "author": {
+        "@type": "Person",
+        "name": "Laura",
+        "description": "Française installée au Québec, passionnée de voyages et de nature canadienne"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Mon Canada",
+        "url": siteUrl
+      }
+    })} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

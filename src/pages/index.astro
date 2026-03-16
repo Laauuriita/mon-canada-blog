@@ -1,0 +1,100 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog');
+const recentPosts = allPosts
+  .sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf())
+  .slice(0, 3);
+---
+<Layout
+  title="Accueil"
+  description="Blog de voyage sur le Canada, écrit par une Française installée au Québec. Découvrez les forêts, le fleuve Saint-Laurent, la gastronomie et la vie au Québec."
+>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-eyebrow">✈️ Une Française au Canada</span>
+      <h1>Le Canada,<br><span class="accent">vu avec des yeux français</span></h1>
+      <p>
+        Paysages à couper le souffle, hivers sauvages, érables en feu, cuisine réconfortante...
+        Bienvenue dans mon Canada, celui que j'explore au quotidien depuis le Québec.
+      </p>
+      <div class="hero-actions">
+        <a href="/blog" class="btn btn-primary">Lire le blog</a>
+        <a href="/a-propos" class="btn btn-outline">Mon histoire</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRO THÈMES -->
+  <section class="section">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; text-align: center;">
+        {[
+          { icon: "🌲", title: "Nature sauvage", text: "Des forêts boréales aux Rocheuses, je t'emmène dans des paysages qui changent le regard." },
+          { icon: "🍁", title: "Vie au Québec", text: "La belle province vue de l'intérieur — ses saisons, ses habitants, ses traditions." },
+          { icon: "🫕", title: "Gastronomie", text: "Poutine, sirop d'érable, homard des Îles... les saveurs du Canada ne ressemblent à rien d'autre." },
+          { icon: "🧭", title: "Conseils pratiques", text: "Visa, budget, météo, transports : tout ce qu'il faut savoir pour voyager au Canada sereinement." },
+        ].map(item => (
+          <div style="padding: 1.5rem; background: var(--color-sand); border-radius: 12px;">
+            <div style="font-size: 2.5rem; margin-bottom: 0.75rem;">{item.icon}</div>
+            <h3 style="font-size: 1.05rem; margin-bottom: 0.5rem; color: var(--color-forest-dark);">{item.title}</h3>
+            <p style="font-size: 0.9rem; color: var(--color-text-light);">{item.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- DERNIERS ARTICLES -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <h2>Derniers articles</h2>
+        <p>Les aventures canadiennes les plus récentes, directement depuis le terrain.</p>
+        <div class="divider"></div>
+      </div>
+      <div class="cards-grid">
+        {recentPosts.map(post => (
+          <article class="card">
+            <div class="card-image-placeholder" style={`background: ${post.data.bgColor || 'linear-gradient(135deg, #2d5a27, #4a7c3f)'}`}>
+              {post.data.emoji || '🍁'}
+            </div>
+            <div class="card-body">
+              <span class="card-category">{post.data.category}</span>
+              <h3><a href={`/blog/${post.id}`}>{post.data.title}</a></h3>
+              <p>{post.data.description}</p>
+              <div class="card-meta">
+                <span>{new Date(post.data.pubDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                <span>·</span>
+                <span>{post.data.readTime} min de lecture</span>
+              </div>
+              <a href={`/blog/${post.id}`} class="card-read-more" style="margin-top: 1rem; display: inline-flex;">Lire l'article</a>
+            </div>
+          </article>
+        ))}
+      </div>
+      <div style="text-align: center; margin-top: 3rem;">
+        <a href="/blog" class="btn btn-primary">Voir tous les articles</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container">
+      <div style="background: linear-gradient(135deg, var(--color-forest-dark), var(--color-forest)); border-radius: 16px; padding: 3.5rem 2rem; text-align: center; color: var(--color-sand);">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">🍁</div>
+        <h2 style="color: var(--color-sand); font-size: 1.8rem; margin-bottom: 0.75rem;">Une question ? Une envie de partager ?</h2>
+        <p style="color: rgba(242,232,217,0.8); max-width: 480px; margin: 0 auto 2rem;">
+          Tu prépares un voyage au Canada, tu veux des conseils ou simplement discuter ?
+          Je lis tous mes messages avec plaisir.
+        </p>
+        <a href="/contact" class="btn btn-primary">Me contacter</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

@@ -1,0 +1,84 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const allPosts = await getCollection('blog');
+const otherPosts = allPosts
+  .filter(p => p.id !== post.id)
+  .sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf())
+  .slice(0, 2);
+---
+<Layout
+  title={post.data.title}
+  description={post.data.description}
+  type="article"
+  publishedTime={post.data.pubDate.toISOString()}
+>
+
+  <div class="article-header">
+    <p class="breadcrumb">
+      <a href="/">Accueil</a> › <a href="/blog">Blog</a> › {post.data.title}
+    </p>
+    <span class="card-category" style="background: rgba(192,57,43,0.25); margin-bottom: 1rem; display: inline-block;">{post.data.category}</span>
+    <h1>{post.data.title}</h1>
+    <div class="article-meta">
+      <span>✍️ Laura</span>
+      <span>·</span>
+      <span>📅 {new Date(post.data.pubDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+      <span>·</span>
+      <span>⏱️ {post.data.readTime} min de lecture</span>
+    </div>
+    {post.data.tags && (
+      <div style="margin-top: 1.25rem; display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem;">
+        {post.data.tags.map(tag => (
+          <span style="font-size: 0.8rem; background: rgba(242,232,217,0.15); color: rgba(242,232,217,0.8); padding: 0.25rem 0.7rem; border-radius: 20px; border: 1px solid rgba(242,232,217,0.2);">#{tag}</span>
+        ))}
+      </div>
+    )}
+  </div>
+
+  <div class="article-content">
+    <Content />
+  </div>
+
+  <!-- ARTICLES SUIVANTS -->
+  {otherPosts.length > 0 && (
+    <section style="background: var(--color-sand); padding: 3rem 1.5rem;">
+      <div style="max-width: 1100px; margin: 0 auto;">
+        <h2 style="font-size: 1.5rem; margin-bottom: 2rem; text-align: center; color: var(--color-forest-dark);">À lire aussi</h2>
+        <div class="cards-grid" style="max-width: 760px; margin: 0 auto;">
+          {otherPosts.map(p => (
+            <article class="card">
+              <div class="card-image-placeholder" style={`background: ${p.data.bgColor || 'linear-gradient(135deg, #2d5a27, #4a7c3f)'}`}>
+                {p.data.emoji || '🍁'}
+              </div>
+              <div class="card-body">
+                <span class="card-category">{p.data.category}</span>
+                <h3><a href={`/blog/${p.id}`}>{p.data.title}</a></h3>
+                <p>{p.data.description.substring(0, 100)}...</p>
+                <a href={`/blog/${p.id}`} class="card-read-more" style="margin-top: 0.75rem; display: inline-flex;">Lire l'article</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <div class="article-nav">
+    <a href="/blog" class="btn btn-outline" style="border-color: var(--color-forest); color: var(--color-forest);">← Retour au blog</a>
+    <a href="/contact" class="btn btn-primary">Réagir à cet article</a>
+  </div>
+
+</Layout>

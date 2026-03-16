@@ -1,0 +1,50 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog');
+const posts = allPosts.sort(
+  (a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
+);
+---
+<Layout
+  title="Blog"
+  description="Tous les articles du blog Mon Canada — hiver québécois, road trips, gastronomie, nature et vie d'expatriée française au Québec."
+>
+
+  <div class="page-header">
+    <h1>Le Blog</h1>
+    <p>Histoires, conseils et coups de cœur d'une Française qui explore le Canada.</p>
+  </div>
+
+  <div class="blog-list">
+    <div class="cards-grid">
+      {posts.map(post => (
+        <article class="card">
+          <div class="card-image-placeholder" style={`background: ${post.data.bgColor || 'linear-gradient(135deg, #2d5a27, #4a7c3f)'}`}>
+            {post.data.emoji || '🍁'}
+          </div>
+          <div class="card-body">
+            <span class="card-category">{post.data.category}</span>
+            <h3><a href={`/blog/${post.id}`}>{post.data.title}</a></h3>
+            <p>{post.data.description}</p>
+            <div class="card-meta">
+              <span>{new Date(post.data.pubDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+              <span>·</span>
+              <span>{post.data.readTime} min de lecture</span>
+            </div>
+            {post.data.tags && (
+              <div style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem;">
+                {post.data.tags.slice(0, 3).map(tag => (
+                  <span style="font-size: 0.75rem; background: var(--color-sand); color: var(--color-stone); padding: 0.2rem 0.6rem; border-radius: 20px;">#{tag}</span>
+                ))}
+              </div>
+            )}
+            <a href={`/blog/${post.id}`} class="card-read-more" style="margin-top: 1rem; display: inline-flex;">Lire l'article</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+
+</Layout>
