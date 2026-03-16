@@ -1,25 +1,25 @@
 /* ============================================
-   PALETTE CANADA — Nature, Érable, Forêt
+   PALETTE BORÉAL NORDIQUE
    ============================================ */
 :root {
-  --color-forest-dark: #1a2e1a;
-  --color-forest: #2d5a27;
-  --color-forest-light: #4a7c3f;
-  --color-maple: #c0392b;
-  --color-maple-light: #e74c3c;
-  --color-sand: #f2e8d9;
-  --color-sand-dark: #e8d5bc;
-  --color-stone: #8c7b6b;
-  --color-white: #fdfaf7;
-  --color-text: #2c2416;
-  --color-text-light: #6b5c4a;
+  --color-forest-dark: #0d1f2d;
+  --color-forest: #1e4d3b;
+  --color-forest-light: #2d6b54;
+  --color-maple: #d4870f;
+  --color-maple-light: #e89e2a;
+  --color-sand: #f5efe6;
+  --color-sand-dark: #e8ddd0;
+  --color-stone: #7a8c8a;
+  --color-white: #fdfbf8;
+  --color-text: #1a2a24;
+  --color-text-light: #4a6058;
 
   --font-heading: 'Georgia', 'Times New Roman', serif;
   --font-body: 'Segoe UI', system-ui, -apple-system, sans-serif;
 
   --radius: 8px;
-  --shadow: 0 2px 16px rgba(44, 36, 22, 0.10);
-  --shadow-lg: 0 8px 32px rgba(44, 36, 22, 0.15);
+  --shadow: 0 2px 16px rgba(13, 31, 45, 0.10);
+  --shadow-lg: 0 8px 32px rgba(13, 31, 45, 0.18);
   --transition: 0.25s ease;
 }
 
