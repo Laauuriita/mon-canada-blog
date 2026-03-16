@@ -64,16 +64,15 @@ import Layout from '../layouts/Layout.astro';
         <div class="form-card">
           <h3 style="font-size: 1.2rem; margin-bottom: 1.5rem; color: var(--color-forest-dark);">Envoyer un message</h3>
 
-          <!--
-            FORMSPREE : remplace "YOUR_FORM_ID" par ton ID Formspree.
-            Crée un compte gratuit sur formspree.io, crée un formulaire,
-            et copie l'ID (format : xyzabc12) dans l'URL ci-dessous.
-          -->
           <form
-            action="https://formspree.io/f/YOUR_FORM_ID"
+            action="https://api.web3forms.com/submit"
             method="POST"
             id="contact-form"
           >
+            <input type="hidden" name="access_key" value="a1ee29bd-ed7e-49c8-b852-623605cb72a5" />
+            <input type="hidden" name="subject" value="Nouveau message — Mon Canada Blog" />
+            <input type="hidden" name="from_name" value="Mon Canada Blog" />
+            <input type="checkbox" name="botcheck" style="display:none" />
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
               <div class="form-group">
                 <label for="prenom">Prénom *</label>
