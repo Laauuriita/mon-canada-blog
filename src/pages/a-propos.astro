@@ -3,67 +3,90 @@ import Layout from '../layouts/Layout.astro';
 ---
 <Layout
   title="À propos"
-  description="Je m'appelle Laura, Française installée au Québec depuis 2021. Ce blog, c'est mon journal de bord canadien — les découvertes, les chocs culturels et les coups de cœur."
+  description="Laura et Bastien — une nageuse sauveteur et un bûcheron, deux Français installés au Québec. Ce blog c'est notre journal de bord canadien, avec beaucoup d'humour et d'écureuils."
 >
 
   <div class="page-header">
     <h1>À propos</h1>
-    <p>L'histoire d'une Française qui a traversé l'Atlantique et n'est jamais vraiment repartie.</p>
+    <p>L'histoire d'une nageuse et d'un bûcheron qui ont traversé l'Atlantique ensemble.</p>
   </div>
 
+  <!-- LAURA -->
   <section class="section">
     <div class="container">
       <div class="about-grid">
         <div>
-          <div class="about-avatar-placeholder">🧡</div>
+          <div class="about-avatar-placeholder">🏊‍♀️</div>
         </div>
         <div class="about-content">
-          <h1>Bonjour, je suis Laura !</h1>
-          <p class="tagline">Française, Québécoise d'adoption, voyageuse compulsive.</p>
+          <h1>Laura</h1>
+          <p class="tagline">Nageuse de haut niveau, sauveteur en mer, spécialiste SEO & accro au Canada.</p>
           <p>
             Tout a commencé en 2019, avec un billet aller-retour Montréal pour des vacances de deux semaines.
-            Deux semaines qui ont tout changé. Le fleuve Saint-Laurent, les forêts d'épinettes, le francophone
-            savoureux des Québécois, la poutine découverte à 1h du matin dans un snack de la rue Saint-Denis...
-            j'étais foutu·e.
+            Deux semaines qui ont tout changé. Le fleuve Saint-Laurent, les forêts d'épinettes, le français
+            savoureux des Québécois, la poutine découverte à 1h du matin rue Saint-Denis...
           </p>
           <p>
-            En 2021, j'ai fait mes valises pour de bon. Permis de travail, appartement à Montréal, job dans
-            une boîte tech, et surtout : un énorme besoin de tout explorer. Le Canada est immense — 10 millions
-            de kilomètres carrés, dix provinces, trois territoires — et chaque coin de ce pays a quelque chose
-            à raconter.
+            En 2021, j'ai fait mes valises pour de bon. Je suis sérieuse dans mon travail — je m'occupe du SEO
+            de ce blog avec rigueur — mais je suis aussi la première à rigoler de moi-même quand je rate une
+            raquette de neige ou que je commande un "café au lait" et qu'on me regarde comme si j'avais dit
+            quelque chose d'obscène.
           </p>
           <p>
-            Ce blog, c'est mon carnet de route. J'y raconte le Québec que j'habite, mais aussi les escapades
-            en Ontario, les road trips dans les Maritimes, les randonnées dans Charlevoix, les weekends à Québec
-            sous la neige. Je l'écris pour les voyageurs qui veulent aller au-delà des circuits touristiques,
-            et pour les expatriés en herbe qui rêvent de franchir le pas.
-          </p>
-          <p>
-            Je ne suis ni journaliste, ni influenceuse — juste quelqu'un qui aime écrire et qui a beaucoup
-            de choses à partager.
+            La mer me manque parfois (sauveteur en mer, c'est une vocation, pas juste un job), mais le
+            Saint-Laurent est tellement grand qu'on finit presque par oublier qu'il ne sale pas.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FAITS EN CHIFFRES -->
+  <!-- BASTIEN -->
   <section class="section section-alt">
     <div class="container">
+      <div class="about-grid">
+        <div class="about-content">
+          <h1>Bastien</h1>
+          <p class="tagline">Bûcheron de formation, rugbyman, gourmand invétéré & homme des bois au Canada.</p>
+          <p>
+            Quand Laura m'a parlé du Canada pour la première fois, j'ai dit oui en moins de dix secondes.
+            Un pays avec des forêts immenses, de la neige, du gibier et de la bonne bouffe ? C'était fait pour moi.
+          </p>
+          <p>
+            Bûcheron de formation, j'ai une relation particulière avec les arbres — ici au Québec, ils sont
+            partout, ils sont grands, et certains valent de l'or liquide en mars quand la sève monte. Sur
+            le terrain du rugby, j'ai appris à foncer. Dans les forêts canadiennes, j'ai appris à ralentir.
+          </p>
+          <p>
+            Je suis le gourmand de l'équipe. Si un article parle de nourriture, il y a de fortes chances que
+            j'y sois pour quelque chose. La poutine, le sirop d'érable, la bière locale — j'ai fait ma part
+            de recherches, et je continue.
+          </p>
+        </div>
+        <div>
+          <div class="about-avatar-placeholder">🪓</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAITS -->
+  <section class="section">
+    <div class="container">
       <div class="section-header">
-        <h2>En quelques chiffres</h2>
+        <h2>Nous en quelques chiffres</h2>
         <div class="divider"></div>
       </div>
       <div class="facts-grid" style="max-width: 900px; margin: 0 auto;">
         {[
-          { icon: "🗓️", label: "Installée au Québec depuis", value: "2021" },
+          { icon: "🗓️", label: "Installés au Québec depuis", value: "2021" },
           { icon: "🏙️", label: "Ville de résidence", value: "Montréal" },
           { icon: "🗺️", label: "Provinces visitées", value: "8 / 10" },
-          { icon: "🏔️", label: "Parcs nationaux explorés", value: "14" },
+          { icon: "🐿️", label: "Écureuils croisés", value: "Incalculable" },
           { icon: "🌡️", label: "Température la plus froide vécue", value: "−34°C" },
-          { icon: "🍁", label: "Cabanes à sucre visitées", value: "Trop pour compter" },
-          { icon: "🎿", label: "Premières fois sur des skis", value: "Hiver 2022" },
-          { icon: "✍️", label: "Passion première", value: "L'écriture" },
+          { icon: "🏈", label: "Matchs de rugby regardés ensemble", value: "Tous" },
+          { icon: "🎿", label: "Premières fois sur des skis (Laura)", value: "Hiver 2022" },
+          { icon: "🍺", label: "Bières locales testées (Bastien)", value: "Trop pour compter" },
         ].map(fact => (
           <div class="fact-card">
             <div class="fact-icon">{fact.icon}</div>
@@ -76,25 +99,25 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <!-- POURQUOI CE BLOG -->
-  <section class="section">
+  <section class="section section-alt">
     <div class="container" style="max-width: 760px;">
-      <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--color-forest-dark);">Pourquoi ce blog ?</h2>
+      <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: var(--color-forest-dark);">Pourquoi "Comme des Écureuils" ?</h2>
       <p style="margin-bottom: 1.25rem; color: var(--color-text-light);">
-        Quand je suis arrivée au Québec, j'aurais adoré trouver un blog écrit par une Française qui avait
-        déjà vécu tout ça. Quelqu'un pour expliquer la différence entre un dépanneur et une épicerie, pour
-        prévenir que les hivers québécois sont d'une autre nature que les hivers parisiens, pour recommander
-        le meilleur rang à parcourir à l'automne quand les érables s'enflamment.
+        Parce que les écureuils, c'est notre truc. Depuis qu'on est arrivés au Québec, on en croise partout —
+        dans les parcs, sur les balcons, dans les arbres à deux centimètres de notre tête. Ils sont curieux,
+        ils explorent, ils collectent, ils s'adaptent à tout.
       </p>
       <p style="margin-bottom: 1.25rem; color: var(--color-text-light);">
-        Je n'ai pas trouvé exactement ça. Alors je l'ai créé.
+        C'est un peu ce qu'on fait aussi. On explore ce pays immense avec les yeux grands ouverts, on
+        collectionne les souvenirs et les découvertes, et on s'adapte — aux hivers à −30°C, au joual québécois,
+        aux distances qui font qu'un "petit détour" peut faire 200 km.
       </p>
       <p style="color: var(--color-text-light);">
-        Mon objectif n'est pas d'être exhaustif ni de tout couvrir. C'est de partager ce que j'ai vraiment
-        vécu, ressenti, découvert — avec honnêteté et curiosité. Le Canada est un pays qui mérite qu'on
-        prenne le temps de le comprendre, pas juste de le photographier.
+        Ce blog c'est notre façon de tout partager — avec honnêteté, avec humour, et avec l'enthousiasme
+        de deux personnes qui réalisent vraiment leur projet de vie.
       </p>
       <div style="margin-top: 2.5rem; text-align: center;">
-        <a href="/contact" class="btn btn-primary">Me dire bonjour 👋</a>
+        <a href="/contact" class="btn btn-primary">Nous dire bonjour 👋</a>
       </div>
     </div>
   </section>
