@@ -1,0 +1,84 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog');
+
+  // Collecte tous les slugs de catégorie uniques
+  const categorySlugs = [...new Set(
+    allPosts
+      .filter(p => p.data.categorySlug)
+      .map(p => p.data.categorySlug as string)
+  )];
+
+  return categorySlugs.map(cat => ({
+    params: { cat },
+    props: { cat },
+  }));
+}
+
+const { cat } = Astro.params;
+const allPosts = await getCollection('blog');
+const posts = allPosts
+  .filter(p => p.data.categorySlug === cat)
+  .sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf());
+
+// Nom affiché de la catégorie
+const categoryName = posts[0]?.data.category ?? cat;
+---
+<Layout
+  title={`Catégorie : ${categoryName}`}
+  description={`Tous les articles de la catégorie "${categoryName}" — blog Comme des Écureuils, voyage et vie au Canada.`}
+>
+
+  <div class="page-header">
+    <div style="margin-bottom: 0.75rem;">
+      <a href="/blog" style="font-size: 0.85rem; color: var(--color-text-muted);">← Retour au blog</a>
+    </div>
+    <span class="card-category" style="display: inline-block; margin-bottom: 1rem;">{categoryName}</span>
+    <h1>{categoryName}</h1>
+    <p>{posts.length} article{posts.length > 1 ? 's' : ''} dans cette catégorie</p>
+  </div>
+
+  <div class="blog-list">
+    {posts.length > 0 ? (
+      <div class="cards-grid">
+        {posts.map(post => (
+          <article class="card">
+            {post.data.heroImage ? (
+              <img
+                src={post.data.heroImage}
+                alt={post.data.title}
+                class="card-image"
+                loading="lazy"
+              />
+            ) : (
+              <div class="card-image-placeholder" style={`background: ${post.data.bgColor || 'linear-gradient(135deg, #0d2a1a, #0a1e2e)'}`}>
+                {post.data.emoji || '🍁'}
+              </div>
+            )}
+            <div class="card-body">
+              <span class="card-category">{post.data.category}</span>
+              <h3><a href={`/blog/${post.id}`}>{post.data.title}</a></h3>
+              <p>{post.data.description}</p>
+              <div class="card-meta">
+                <span>{new Date(post.data.pubDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                <span>·</span>
+                <span>{post.data.readTime} min</span>
+              </div>
+              <a href={`/blog/${post.id}`} class="card-read-more" style="margin-top: 1rem; display: inline-flex;">Lire l'article</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    ) : (
+      <div style="text-align: center; padding: 4rem 1.5rem; color: var(--color-text-muted);">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">📝</div>
+        <h2 style="color: var(--color-text-muted); font-size: 1.2rem; margin-bottom: 0.5rem;">Bientôt disponible</h2>
+        <p>Les premiers articles de cette catégorie arrivent prochainement.</p>
+      </div>
+    )}
+  </div>
+
+</Layout>

@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Comments from '../../components/Comments.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -96,7 +97,10 @@ const heroImg = post.data.heroImage || heroImages[post.data.category] || 'https:
   <!-- NAV -->
   <div class="article-nav">
     <a href="/blog" class="btn btn-outline">← Retour au blog</a>
-    <a href="/contact" class="btn btn-primary">Réagir à cet article</a>
+    <a href="/contact" class="btn btn-primary">Nous écrire</a>
   </div>
+
+  <!-- COMMENTAIRES -->
+  <Comments />
 
 </Layout>

@@ -3,9 +3,12 @@ title: "L'automne dans Charlevoix : quand le Québec prend feu"
 description: "Septembre et octobre dans Charlevoix, c'est l'un des plus beaux spectacles naturels au monde. Route des Saveurs, mont du Lac-des-Cygnes, Baie-Saint-Paul... mon road trip entre forêts cramoisies et fleuve majestueux."
 pubDate: 2024-10-05
 category: "Nature & Paysages"
+categorySlug: "nature-et-paysages"
+heroImage: "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=800&q=75&auto=format&fit=crop"
 emoji: "🍂"
 bgColor: "linear-gradient(135deg, #8b2e00, #c0392b)"
 readTime: 9
+author: "Laura"
 tags: ["charlevoix", "automne", "couleurs", "road trip", "québec", "nature"]
 ---
 

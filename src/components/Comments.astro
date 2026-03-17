@@ -1,0 +1,64 @@
+---
+// Commentaires via Utterances (GitHub Issues)
+// Gratuit, sans pub, open source — les lecteurs se connectent avec GitHub
+---
+
+<div class="comments-section">
+  <div class="container" style="max-width: 760px; padding: 3rem 1.5rem 4rem;">
+    <div class="comments-header">
+      <h2>Commentaires</h2>
+      <p>Tu as aimé cet article ? Une question, une anecdote à partager ? Laisse un commentaire — on répond à tout !</p>
+      <div class="divider" style="margin: 0.75rem 0 0;"></div>
+    </div>
+
+    <div id="utterances-container" style="margin-top: 2rem;">
+      <script
+        src="https://utteranc.es/client.js"
+        repo="Laauuriita/mon-canada-blog"
+        issue-term="pathname"
+        label="💬 commentaire"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async
+      ></script>
+    </div>
+
+    <p class="comments-note">
+      💡 La connexion à GitHub est requise pour commenter — c'est gratuit, sécurisé, et sans pub.
+    </p>
+  </div>
+</div>
+
+<style>
+.comments-section {
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+}
+
+.comments-header h2 {
+  font-size: 1.5rem;
+  color: var(--color-white);
+  margin-bottom: 0.5rem;
+}
+
+.comments-header p {
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+}
+
+.comments-note {
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  padding: 0.75rem;
+  background: var(--color-surface-2);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+}
+
+/* Style overrides pour Utterances iframe */
+.utterances {
+  max-width: 100% !important;
+}
+</style>

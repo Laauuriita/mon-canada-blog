@@ -3,9 +3,12 @@ title: "Mon premier hiver québécois : survivre (et adorer) le froid canadien"
 description: "−28°C, verglas, poudrerie et bottes de neige... Récit sans filtre de mon premier vrai hiver au Québec, celui qui m'a transformée en amoureuse de l'hiver."
 pubDate: 2024-01-15
 category: "Vie au Québec"
+categorySlug: "vie-au-quebec"
+heroImage: "https://images.unsplash.com/photo-1516912481808-3406841bd33c?w=800&q=75&auto=format&fit=crop"
 emoji: "❄️"
 bgColor: "linear-gradient(135deg, #1a2e4a, #2d5a8e)"
 readTime: 7
+author: "Laura"
 tags: ["hiver", "québec", "montréal", "vie quotidienne", "expatriation"]
 ---
 

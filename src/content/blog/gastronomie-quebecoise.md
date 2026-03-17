@@ -3,6 +3,9 @@ title: "La gastronomie québécoise expliquée à une Française"
 description: "Poutine, tourtière, cretons, tarte au sucre, sirop d'érable... Je t'explique tout de la cuisine québécoise, ses origines, ses codes et les adresses où manger comme un·e vrai·e Québécois·e."
 pubDate: 2024-03-22
 category: "Gastronomie"
+categorySlug: "gastronomie"
+heroImage: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=75&auto=format&fit=crop"
+author: "Laura & Bastien"
 emoji: "🍁"
 bgColor: "linear-gradient(135deg, #5a3a1a, #8b5e2d)"
 readTime: 8

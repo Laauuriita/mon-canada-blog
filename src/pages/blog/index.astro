@@ -6,37 +6,72 @@ const allPosts = await getCollection('blog');
 const posts = allPosts.sort(
   (a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf()
 );
+
+// Catégories disponibles
+const categories = [
+  { label: "Tous les articles", slug: null },
+  { label: "Vie au Québec", slug: "vie-au-quebec" },
+  { label: "Nature & Paysages", slug: "nature-et-paysages" },
+  { label: "Histoire et Art", slug: "histoire-et-art" },
+  { label: "Gastronomie", slug: "gastronomie" },
+];
 ---
 <Layout
   title="Blog"
-  description="Tous les articles du blog Mon Canada — hiver québécois, road trips, gastronomie, nature et vie d'expatriée française au Québec."
+  description="Tous les articles du blog Comme des Écureuils — hiver québécois, road trips, nature sauvage, culture et histoire canadienne, vie d'expatriée française au Québec."
 >
 
   <div class="page-header">
     <h1>Le Blog</h1>
-    <p>Histoires, conseils et coups de cœur d'une Française qui explore le Canada.</p>
+    <p>Histoires, conseils et coups de cœur depuis le Canada.</p>
   </div>
 
+  <!-- FILTRE CATÉGORIES -->
+  <div class="category-filter">
+    <div class="container">
+      {categories.map(cat => (
+        <a
+          href={cat.slug ? `/blog/categorie/${cat.slug}` : '/blog'}
+          class={`cat-pill ${!cat.slug ? 'active' : ''}`}
+        >
+          {cat.label}
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <!-- ARTICLES -->
   <div class="blog-list">
     <div class="cards-grid">
       {posts.map(post => (
         <article class="card">
-          <div class="card-image-placeholder" style={`background: ${post.data.bgColor || 'linear-gradient(135deg, #2d5a27, #4a7c3f)'}`}>
-            {post.data.emoji || '🍁'}
-          </div>
+          {post.data.heroImage ? (
+            <img
+              src={post.data.heroImage}
+              alt={post.data.title}
+              class="card-image"
+              loading="lazy"
+            />
+          ) : (
+            <div class="card-image-placeholder" style={`background: ${post.data.bgColor || 'linear-gradient(135deg, #0d2a1a, #0a1e2e)'}`}>
+              {post.data.emoji || '🍁'}
+            </div>
+          )}
           <div class="card-body">
-            <span class="card-category">{post.data.category}</span>
+            <a href={post.data.categorySlug ? `/blog/categorie/${post.data.categorySlug}` : '/blog'} class="card-category">
+              {post.data.category}
+            </a>
             <h3><a href={`/blog/${post.id}`}>{post.data.title}</a></h3>
             <p>{post.data.description}</p>
             <div class="card-meta">
               <span>{new Date(post.data.pubDate).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
               <span>·</span>
-              <span>{post.data.readTime} min de lecture</span>
+              <span>{post.data.readTime} min</span>
             </div>
             {post.data.tags && (
-              <div style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem;">
-                {post.data.tags.slice(0, 3).map(tag => (
-                  <span style="font-size: 0.75rem; background: var(--color-sand); color: var(--color-stone); padding: 0.2rem 0.6rem; border-radius: 20px;">#{tag}</span>
+              <div style="margin-top: 0.85rem; display: flex; flex-wrap: wrap; gap: 0.4rem;">
+                {post.data.tags.slice(0, 3).map((tag: string) => (
+                  <span style="font-size: 0.72rem; background: var(--color-teal-dim); color: var(--color-teal); padding: 0.2rem 0.6rem; border-radius: 20px; border: 1px solid var(--color-teal-border);">#{tag}</span>
                 ))}
               </div>
             )}
@@ -47,4 +82,105 @@ const posts = allPosts.sort(
     </div>
   </div>
 
+  <!-- TEXTE SEO -->
+  <section class="seo-section">
+    <div class="container">
+      <div class="seo-block">
+        <h2>Un blog sur le Canada, écrit depuis le Québec</h2>
+        <p>
+          <strong>Comme des Écureuils</strong> est un blog de voyage et de vie au Canada, rédigé par une nageuse sauveteur française installée à Montréal depuis 2021. On y parle d'<strong>hivers québécois</strong> et de survie par −30°C, de <strong>road trips dans les Rocheuses</strong>, de <strong>nature sauvage canadienne</strong>, de <strong>culture francophone</strong> et de tout ce qui fait que le Canada est un pays qui change ceux qui le vivent. Sans filtre, avec humour, et avec l'œil de quelqu'un qui n'a pas encore tout compris — mais qui s'y attelle chaque semaine.
+        </p>
+        <div class="seo-tags">
+          {["blog canada", "expatriée québec", "voyage canada", "vie au québec", "nature canadienne", "culture québécoise", "hiver québec", "charlevoix", "montréal"].map(tag => (
+            <span class="seo-tag">#{tag}</span>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
 </Layout>
+
+<style>
+.category-filter {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  padding: 1rem 1.5rem;
+}
+
+.category-filter .container {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.cat-pill {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  border-radius: 30px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  background: transparent;
+  transition: all var(--transition);
+}
+
+.cat-pill:hover,
+.cat-pill.active {
+  background: var(--color-teal-dim);
+  color: var(--color-teal);
+  border-color: var(--color-teal-border);
+}
+
+.blog-list {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+/* SEO */
+.seo-section {
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding: 3.5rem 1.5rem;
+}
+
+.seo-block {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.seo-block h2 {
+  font-size: 1.2rem;
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.seo-block p {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+}
+
+.seo-block strong { color: var(--color-text); }
+
+.seo-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.seo-tag {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  padding: 0.2rem 0.65rem;
+  border-radius: 20px;
+}
+</style>
